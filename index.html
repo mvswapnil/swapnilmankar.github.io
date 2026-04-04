@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Swapnil Mankar — Staff Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:      #f7f5f0;
+    --surface: #ffffff;
+    --surface2:#f0ede6;
+    --border:  #e0dbd0;
+    --accent:  #2d6a4f;
+    --accent2: #b5543a;
+    --text:    #1c1c1c;
+    --muted:   #7a7468;
+    --heading: 'Cormorant Garamond', serif;
+    --body:    'Jost', sans-serif;
+    --mono:    'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.75; overflow-x: hidden; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ul { list-style: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(247,245,240,0.93);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--heading); font-size: 1.5rem; font-weight: 500; color: var(--text); }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: grid; place-items: center;
+    padding: 8rem 4rem 6rem; position: relative; overflow: hidden; background: var(--bg);
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px; opacity: 0.5;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(45,106,79,0.07) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 860px; width: 100%; }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.1s;
+  }
+  h1.hero-name {
+    font-family: var(--heading); font-size: clamp(3.8rem, 8vw, 7rem);
+    font-weight: 500; line-height: 1.0; color: var(--text);
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.25s;
+  }
+  h1.hero-name em { color: var(--accent); font-style: italic; display: block; }
+  .hero-tagline {
+    margin-top: 1.8rem; font-size: 1rem; font-weight: 300; color: var(--muted);
+    max-width: 500px; line-height: 1.8;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.55s;
+  }
+  .hero-meta a, .hero-meta span {
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+    color: var(--muted); display: flex; align-items: center; gap: 0.45rem;
+  }
+  .hero-meta a:hover { color: var(--accent); text-decoration: none; }
+  .hero-meta .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    display: inline-block; animation: pulse 2.5s infinite;
+  }
+  .hero-cta { display: flex; gap: 1rem; margin-top: 3rem; opacity: 0; animation: fadeUp 0.7s ease forwards 0.7s; }
+  .btn {
+    font-family: var(--body); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    padding: 0.8rem 2rem; border: 1px solid var(--accent); color: var(--accent);
+    background: transparent; cursor: pointer; transition: background 0.2s, color 0.2s;
+    display: inline-block; border-radius: 2px;
+  }
+  .btn:hover { background: var(--accent); color: #fff; text-decoration: none; }
+  .btn-ghost { border-color: var(--border); color: var(--muted); }
+  .btn-ghost:hover { background: var(--surface2); color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; max-width: 1060px; margin: 0 auto; }
+  .section-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .section-title { font-family: var(--heading); font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 500; font-style: italic; line-height: 1.1; color: var(--text); margin-bottom: 3rem; }
+
+  /* SKILLS */
+  #skills { border-top: 1px solid var(--border); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .skill-card { background: var(--surface); padding: 1.6rem 1.8rem; transition: background 0.2s; position: relative; overflow: hidden; }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 0; height: 3px; background: var(--accent); transition: width 0.3s ease;
+  }
+  .skill-card:hover::before { width: 100%; }
+  .skill-card:hover { background: #faf9f5; }
+  .skill-icon { font-size: 1.3rem; margin-bottom: 0.6rem; }
+  .skill-card h3 { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); margin-bottom: 0.35rem; }
+  .skill-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; font-weight: 300; }
+  .skill-section-divider {
+    grid-column: 1 / -1;
+    background: var(--surface2);
+    padding: 0.7rem 1.8rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* EXPERIENCE */
+  #experience { border-top: 1px solid var(--border); }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.8rem 0; border-bottom: 1px solid var(--border); }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-meta { position: sticky; top: 90px; align-self: start; }
+  .exp-period { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.45rem; }
+  .exp-company { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
+  .exp-location { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+  .exp-role { font-family: var(--heading); font-size: 1.65rem; font-weight: 500; font-style: italic; color: var(--text); margin-bottom: 1rem; line-height: 1.15; }
+  .exp-bullets { display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-bullets li { font-size: 0.9rem; font-weight: 300; color: var(--muted); padding-left: 1.1rem; position: relative; line-height: 1.7; }
+  .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+  .exp-bullets li strong { color: var(--text); font-weight: 500; }
+  .current-badge {
+    display: inline-block; font-family: var(--mono); font-size: 0.62rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.2rem 0.55rem; border: 1px solid var(--accent); color: var(--accent); margin-top: 0.6rem; border-radius: 2px;
+  }
+
+  /* EDUCATION */
+  #education { border-top: 1px solid var(--border); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .edu-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 2.2rem; border-radius: 4px; position: relative; overflow: hidden; transition: box-shadow 0.2s;
+  }
+  .edu-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .edu-card::after {
+    content: attr(data-year); position: absolute; bottom: -0.8rem; right: 1rem;
+    font-family: var(--heading); font-size: 5rem; font-weight: 600; color: var(--surface2); line-height: 1; pointer-events: none;
+  }
+  .edu-degree { font-family: var(--heading); font-size: 1.35rem; font-weight: 500; color: var(--text); margin-bottom: 0.45rem; position: relative; z-index: 1; }
+  .edu-school { font-size: 0.85rem; font-weight: 300; color: var(--muted); margin-bottom: 0.35rem; position: relative; z-index: 1; }
+  .edu-detail { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); position: relative; z-index: 1; }
+
+  /* PROJECTS */
+  #projects { border-top: 1px solid var(--border); }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+    padding: 2rem; min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; transition: box-shadow 0.2s;
+  }
+  .project-card.empty { opacity: 0.45; }
+  .project-tag { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem; }
+  .project-title { font-family: var(--heading); font-size: 1.3rem; font-style: italic; color: var(--text); flex: 1; display: flex; align-items: center; }
+  .coming-soon-text { font-family: var(--mono); font-size: 0.72rem; color: var(--border); text-transform: uppercase; letter-spacing: 0.18em; }
+
+  /* INTERESTS */
+  #interests { border-top: 1px solid var(--border); }
+  .interests-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .interest-pill {
+    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em;
+    padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 100px;
+    color: var(--muted); background: var(--surface); transition: border-color 0.2s, color 0.2s, background 0.2s; cursor: default;
+  }
+  .interest-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(45,106,79,0.05); }
+  .interests-note { margin-top: 1.8rem; font-family: var(--mono); font-size: 0.72rem; color: var(--border); letter-spacing: 0.1em; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 2.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center; background: var(--surface2);
+  }
+  .footer-left { font-family: var(--heading); font-size: 1.3rem; font-style: italic; color: var(--muted); }
+  .footer-left span { color: var(--accent); }
+  .footer-right { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.75); } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 4rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.8rem; }
+    .exp-meta { position: static; }
+    .edu-grid, .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 2rem 1.5rem; }
+    .hero-cta { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SM<span>.</span></div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#interests">Interests</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="max-width:none;">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Staff Software Engineer · Autonomous Systems</p>
+    <h1 class="hero-name">
+      Swapnil
+      <em>Mankar</em>
+    </h1>
+    <p class="hero-tagline">
+      Building the software that moves autonomous vehicles safely from A to B —
+      specializing in motion planning, routing algorithms, and systems-level C++.
+    </p>
+    <div class="hero-meta">
+      <span><span class="dot"></span> San Francisco Bay Area</span>
+      <a href="tel:+19193485097">+1 (919) 348 5097</a>
+      <a href="mailto:mvswapnil@gmail.com">mvswapnil@gmail.com</a>
+      <a href="http://www.linkedin.com/in/swapnilmankar" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="hero-cta">
+      <a href="#experience" class="btn">View Experience</a>
+      <a href="mailto:mvswapnil@gmail.com" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label reveal">Skills</p>
+  <h2 class="section-title reveal">What I Bring</h2>
+  <div class="skills-grid reveal">
+
+    <!-- Technical skills -->
+    <div class="skill-section-divider">Technical</div>
+
+    <div class="skill-card">
+      <div class="skill-icon">⚙️</div>
+      <h3>C++ / C / SQL</h3>
+      <p>Fluent in systems-level C++ with deep expertise in performance-critical code, templates, and modern standards.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🚗</div>
+      <h3>Autonomous Vehicles</h3>
+      <p>Motion planning, route planning, and fleet operations across multiple AV platforms.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔍</div>
+      <h3>Graphs & Algorithms</h3>
+      <p>Design and implementation of search algorithms, graph structures, and pathfinding systems.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐧</div>
+      <h3>Linux</h3>
+      <p>Comfortable developing, debugging, and deploying in Linux environments at scale.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🔄</div>
+      <h3>Agile / Scrum</h3>
+      <p>Experienced in iterative development, sprint planning, and cross-functional collaboration.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🛡️</div>
+      <h3>Performance & Security</h3>
+      <p>Build time optimization, simulation-based debugging, and hardened fleet software.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🧪</div>
+      <h3>Testing & Quality</h3>
+      <p>Exhaustive C++ unit testing, log analysis, and simulation-based issue triage.</p>
+    </div>
+
+    <!-- Leadership skills -->
+    <div class="skill-section-divider">Leadership</div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🧭</div>
+      <h3>Team Leadership</h3>
+      <p>Leading and growing a team of software engineers — setting direction, unblocking individuals, and fostering a culture of quality and ownership.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗺️</div>
+      <h3>Roadmap Planning</h3>
+      <p>Defining technical roadmaps that balance long-term engineering investments with near-term delivery goals and team capacity.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🏛️</div>
+      <h3>Cross-Team Architecture</h3>
+      <p>Leading architectural design discussions across teams to arrive at coherent, scalable system designs that span organizational boundaries.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <h3>Business Prioritization</h3>
+      <p>Translating business needs into engineering priorities — sequencing work to maximize impact while managing technical risk and dependencies.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label reveal">Experience</p>
+  <h2 class="section-title reveal">Where I've Worked</h2>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2023 — Present</div>
+        <div class="exp-company">Zoox Inc</div>
+        <div class="exp-location">Foster City, CA</div>
+        <div class="current-badge">Current</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Staff Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Senior member of the <strong>Mission Planner</strong> team determining optimal routes for autonomous vehicles to reach their destination.</li>
+          <li>Designed and implemented the <strong>Lane Bubble</strong> concept in C++ — enabling the AV software to explore multiple paths simultaneously, preventing the vehicle from getting stuck when a planned route is blocked by road conditions.</li>
+          <li>Contributed to high-level <strong>architectural and design discussions</strong> across teams to devise innovative solutions to route planning problems.</li>
+          <li>Guided and mentored junior engineers through technical and C++ coding challenges.</li>
+          <li>Wrote exhaustive <strong>C++ unit tests</strong> to ensure high code quality and software robustness.</li>
+          <li>Triaged fleet issues via simulation runs and log analysis, implementing software fixes to hit milestone deadlines.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Oct 2019 — Dec 2022</div>
+        <div class="exp-company">Argo AI</div>
+        <div class="exp-location">Palo Alto, CA</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Senior Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Designed and developed numerous features in C++ on the <strong>Motion Planning</strong> team for autonomous vehicles over 3+ years.</li>
+          <li>Built <strong>Contingency Corridors</strong> — a critical safety feature enabling vehicles to diverge from planned routes when approaching a corridor end, preventing getting stuck.</li>
+          <li>Designed and implemented <strong>search algorithms for Routing</strong> to efficiently plan pick-up to drop-off routes, including seamless real-time re-planning on map updates.</li>
+          <li>Developed the <strong>Lane Graph</strong> to represent road lanes and their connectivity, preventing the system from planning infeasibly short lane changes.</li>
+          <li>Implemented <strong>Route Switching</strong> logic for seamless transitions between routes and emergency stops.</li>
+          <li>Built <strong>Trip Management</strong> features handling state transitions between trip itinerary stages.</li>
+          <li>Triaged hundreds of fleet issues during test operations — replaying logs in simulation, tracing component dependencies, and coordinating fixes across teams.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Mar 2014 — Oct 2019</div>
+        <div class="exp-company">Cisco</div>
+        <div class="exp-location">San Jose, CA</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Senior Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Designed and developed software features for Cisco's <strong>ACI (Application Centric Infrastructure)</strong> platform.</li>
+          <li>Implemented <strong>Virtual Port-Channeling (VPC)</strong> support for FHS — involving socket programming, TLV-based peer data sync, and state machine design.</li>
+          <li>Built a <strong>logging infrastructure in C++</strong> providing categorized, multi-file debug logging across the system.</li>
+          <li>Reduced SDK build time from <strong>4 hours to under 2 hours</strong> through targeted build optimization initiatives.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2013 — Mar 2014</div>
+        <div class="exp-company">Netapp</div>
+        <div class="exp-location">Sunnyvale, CA</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Member of Technical Staff</div>
+        <ul class="exp-bullets">
+          <li>Worked with the Mars team on the <strong>FlashRay</strong> product line.</li>
+          <li>Designed the <strong>counter manager</strong> subsystem in C++ — responsible for representing, querying, and processing performance, configuration, and statistical data across all layers of the Mars OS (from Storage to Protocol).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">May 2012 — Aug 2012</div>
+        <div class="exp-company">EMC²</div>
+        <div class="exp-location">Hopkinton, MA</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Software Engineer Intern</div>
+        <ul class="exp-bullets">
+          <li>Joined the enterprise solutions group focused on cloud development.</li>
+          <li>Worked on <strong>baremetal provisioning</strong> of physical and virtual hosts within the baremetal provisioning workstream.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jul 2009 — Jun 2011</div>
+        <div class="exp-company">Infosys Technologies</div>
+        <div class="exp-location">Bangalore, India</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Systems Engineer</div>
+        <ul class="exp-bullets">
+          <li>Developed client web application enhancements using the <strong>J2EE framework</strong>, meeting deliverable deadlines through direct client collaboration.</li>
+          <li>Successfully migrated J2EE web applications from <strong>WAS 5 to WAS 6</strong> across three consecutive releases.</li>
+          <li>Optimized back-end <strong>PL/SQL stored procedures</strong> via trace file analysis to improve performance.</li>
+          <li>Mentored incoming engineers and led their onboarding process.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">Projects</p>
+  <h2 class="section-title reveal">Personal Projects</h2>
+  <div class="projects-grid reveal">
+    <div class="project-card empty">
+      <div class="project-tag">Coming Soon</div>
+      <div class="project-title coming-soon-text">Your project here</div>
+    </div>
+    <div class="project-card empty">
+      <div class="project-tag">Coming Soon</div>
+      <div class="project-title coming-soon-text">Your project here</div>
+    </div>
+    <div class="project-card empty">
+      <div class="project-tag">Coming Soon</div>
+      <div class="project-title coming-soon-text">Your project here</div>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem; font-family:var(--mono); font-size:0.78rem; color:var(--muted); letter-spacing:0.1em;">
+    Projects section ready to populate — share your work and I'll add it here.
+  </p>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label reveal">Education</p>
+  <h2 class="section-title reveal">Academic Background</h2>
+  <div class="edu-grid reveal">
+    <div class="edu-card" data-year="2012">
+      <div class="edu-degree">Master of Computer Science</div>
+      <div class="edu-school">North Carolina State University · Raleigh, NC</div>
+      <div class="edu-detail">GPA 3.89 · December 2012</div>
+    </div>
+    <div class="edu-card" data-year="2009">
+      <div class="edu-degree">B.E. Information Science &amp; Engineering</div>
+      <div class="edu-school">Visveswaraiah Technological University · Karnataka, India</div>
+      <div class="edu-detail">75.67% · Distinction in all 8 semesters · June 2009</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <p class="section-label reveal">Interests</p>
+  <h2 class="section-title reveal">Beyond Work</h2>
+  <div class="interests-row reveal">
+    <span class="interest-pill">Autonomous Systems</span>
+    <span class="interest-pill">Algorithm Design</span>
+    <span class="interest-pill">Open Source</span>
+    <span class="interest-pill">Tech Mentorship</span>
+  </div>
+  <p class="interests-note">Tell me your hobbies and interests and I'll add them here.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Swapnil <span>Mankar</span></div>
+  <div class="footer-right">mvswapnil@gmail.com &nbsp;·&nbsp; San Francisco Bay Area</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

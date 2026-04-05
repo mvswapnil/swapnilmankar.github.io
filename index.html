@@ -182,6 +182,39 @@
   .project-title { font-family: var(--heading); font-size: 1.3rem; font-style: italic; color: var(--text); flex: 1; display: flex; align-items: center; }
   .coming-soon-text { font-family: var(--mono); font-size: 0.72rem; color: var(--border); text-transform: uppercase; letter-spacing: 0.18em; }
 
+  /* PATENTS */
+  #patents { border-top: 1px solid var(--border); }
+  .patents-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .patent-item {
+    background: var(--surface); padding: 1.6rem 2rem;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 1rem; align-items: start;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .patent-item::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.2s;
+  }
+  .patent-item:hover { background: #faf9f5; }
+  .patent-item:hover::before { opacity: 1; }
+  .patent-title { font-family: var(--heading); font-size: 1.15rem; font-weight: 500; color: var(--text); margin-bottom: 0.35rem; line-height: 1.3; }
+  .patent-authors { font-size: 0.8rem; font-weight: 300; color: var(--muted); margin-bottom: 0.3rem; }
+  .patent-number { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); }
+  .patent-meta { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
+  .patent-year { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+  .patent-cited {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.2rem 0.55rem;
+    border: 1px solid var(--border); border-radius: 2px; color: var(--muted);
+  }
+  .patent-cited.has-citations { border-color: var(--accent2); color: var(--accent2); }
+  .patents-scholar-link {
+    margin-top: 1.2rem;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted);
+  }
+  .patents-scholar-link a { color: var(--accent); }
+
   /* INTERESTS */
   #interests { border-top: 1px solid var(--border); }
   .interests-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
@@ -231,6 +264,7 @@
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
+    <a href="#patents">Patents</a>
     <a href="#education">Education</a>
     <a href="#interests">Interests</a>
   </div>
@@ -253,12 +287,12 @@
     <div class="hero-meta">
       <span><span class="dot"></span> San Francisco Bay Area</span>
       <a href="tel:+19193485097">+1 (919) 348 5097</a>
-      <a href="mailto:mvswapnil@gmail.com">mvswapnil@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#a9c4dfdadec8d9c7c0c5e9cec4c8c0c587cac6c4"><span class="__cf_email__" data-cfemail="076a7174706677696e6b47606a666e6b2964686a">[email&#160;protected]</span></a>
       <a href="http://www.linkedin.com/in/swapnilmankar" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
     <div class="hero-cta">
       <a href="#experience" class="btn">View Experience</a>
-      <a href="mailto:mvswapnil@gmail.com" class="btn btn-ghost">Get In Touch</a>
+      <a href="/cdn-cgi/l/email-protection#e9849f9a9e8899878085a98e84888085c78a8684" class="btn btn-ghost">Get In Touch</a>
     </div>
   </div>
 </section>
@@ -489,6 +523,76 @@
   </div>
 </section>
 
+<!-- PATENTS -->
+<section id="patents">
+  <p class="section-label reveal">Patents</p>
+  <h2 class="section-title reveal">Published Patents</h2>
+  <div class="patents-list reveal">
+
+    <div class="patent-item">
+      <div class="patent-body">
+        <div class="patent-title">Endpoint security mechanism to detect IP theft on a virtual machine mobility in switch fabric</div>
+        <div class="patent-authors">GP Sharma, ER Yedavalli, MJ Asghar, AK Chandrasekaran, S Mankar, et al.</div>
+        <div class="patent-number">US Patent 11,368,484</div>
+      </div>
+      <div class="patent-meta">
+        <div class="patent-year">2022</div>
+        <div class="patent-cited has-citations">Cited by 4</div>
+      </div>
+    </div>
+
+    <div class="patent-item">
+      <div class="patent-body">
+        <div class="patent-title">Endpoint security mechanism to detect IP theft on a virtual machine mobility in switch fabric</div>
+        <div class="patent-authors">GP Sharma, ER Yedavalli, MJ Asghar, AK Chandrasekaran, S Mankar, et al.</div>
+        <div class="patent-number">US Patent 11,757,935</div>
+      </div>
+      <div class="patent-meta">
+        <div class="patent-year">2023</div>
+        <div class="patent-cited has-citations">Cited by 2</div>
+      </div>
+    </div>
+
+    <div class="patent-item">
+      <div class="patent-body">
+        <div class="patent-title">Generating local graph data</div>
+        <div class="patent-authors">A Baker, R Fonseca, R Gogna, JMP Kiiski, SV Mankar, MJ McClelland</div>
+        <div class="patent-number">US Patent App. 18/647,820</div>
+      </div>
+      <div class="patent-meta">
+        <div class="patent-year">2025</div>
+        <div class="patent-cited">Pending</div>
+      </div>
+    </div>
+
+    <div class="patent-item">
+      <div class="patent-body">
+        <div class="patent-title">Determining dynamic route data</div>
+        <div class="patent-authors">Y Chang, PC Dasler, A Huang, SP Kulgod, SV Mankar, MJ McClelland, et al.</div>
+        <div class="patent-number">US Patent App. 18/622,094</div>
+      </div>
+      <div class="patent-meta">
+        <div class="patent-year">2025</div>
+        <div class="patent-cited">Pending</div>
+      </div>
+    </div>
+
+    <div class="patent-item">
+      <div class="patent-body">
+        <div class="patent-title">Distributed vehicle route planning</div>
+        <div class="patent-authors">MJ McClelland, CJ Gibson, SV Mankar, Z Feng, I Podkhodov</div>
+        <div class="patent-number">US Patent App. 18/478,698</div>
+      </div>
+      <div class="patent-meta">
+        <div class="patent-year">2025</div>
+        <div class="patent-cited">Pending</div>
+      </div>
+    </div>
+
+  </div>
+  <p class="patents-scholar-link">View full profile on <a href="https://scholar.google.com/citations?user=lSALTqAAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a></p>
+</section>
+
 <!-- INTERESTS -->
 <section id="interests">
   <p class="section-label reveal">Interests</p>
@@ -505,16 +609,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-left">Swapnil <span>Mankar</span></div>
-  <div class="footer-right">mvswapnil@gmail.com &nbsp;·&nbsp; San Francisco Bay Area</div>
+  <div class="footer-right"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c312a2f2b3d2c3235301c3b313d3530723f3331">[email&#160;protected]</a> &nbsp;·&nbsp; San Francisco Bay Area</div>
 </footer>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+<script data-cfasync="false" s
